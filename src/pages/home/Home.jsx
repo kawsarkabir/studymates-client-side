@@ -1,6 +1,7 @@
 import Features from "../../components/Features/Features";
 import Feedback from "../../components/FeedBack/Feedback";
 import FindCommunity from "../../components/FindCommunity/FindCommunity";
+import Footer from "../../components/Footer/Footer";
 import JoinTeam from "../../components/JoinTeam/JoinTeam";
 import OurComunity from "../../components/OurComunity/OurComunity";
 import SupportSession from "../../components/SupportSession/SupportSession";
@@ -16,6 +17,7 @@ const Home = () => {
       <SupportSession></SupportSession>
       <Feedback></Feedback>
       <JoinTeam></JoinTeam>
+      <Footer></Footer>
     </div>
   );
 };

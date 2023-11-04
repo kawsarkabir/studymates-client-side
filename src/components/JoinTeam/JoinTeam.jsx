@@ -1,7 +1,7 @@
 const JoinTeam = () => {
   return (
-    <div className="bg-red-50 my-20">
-      <div className="max-w-screen-xl mx-auto text-center p-10">
+    <div className="bg-red-50 mt-8 p-14">
+      <div className="max-w-screen-xl mx-auto p-14 text-center">
         <h1 className="font-extrabold text-3xl mt-2">
           What are you waiting for ? <br />
           Join the study team!
