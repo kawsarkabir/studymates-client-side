@@ -6,6 +6,7 @@ import {
   signInWithPopup,
   signOut,
 } from "firebase/auth";
+import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../configs/firebase.config";
 export const AuthContext = createContext(null);
@@ -17,10 +18,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-     /*  const userEmail = currentUser?.email || user?.email;
+      /*  const userEmail = currentUser?.email || user?.email;
       const logedUser = { email: userEmail }; */
       //  ==================== Generate Token if user is exits  ============
-     /*  if (currentUser) {
+      /*  if (currentUser) {
         axios
           .post("http://localhost:5000/jwt", logedUser, {
             withCredentials: true,
@@ -76,5 +77,7 @@ const AuthProvider = ({ children }) => {
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>
   );
 };
-
+AuthProvider.propTypes = {
+  children: PropTypes.node.isRequired,
+};
 export default AuthProvider;

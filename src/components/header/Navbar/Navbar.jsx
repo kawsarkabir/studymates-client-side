@@ -116,7 +116,7 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to={"/"} className="text-xl font-semibold mb-8">
+        <Link to={"/"} className="text-xl font-semibold lg:mb-8">
           {/*  <div className="avatar">
             <div className="w-16 rounded-full">
               <img src="https://i.ibb.co/zRBYL2V/study-logo.png" />

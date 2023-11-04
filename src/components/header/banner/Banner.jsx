@@ -1,11 +1,13 @@
 import Typed from "react-typed";
 const Banner = () => {
   return (
-    <div className="max-w-screen-xl mx-auto flex flex-col justify-center items-center h-[70vh]">
-      <h1 className="lg:text-7xl font-bold my-3">Welcome to your</h1>
+    <div className="max-w-screen-xl mx-auto flex flex-col justify-center items-center h-[75vh]">
+      <h1 className="lg:text-7xl text-4xl md:text-6xl font-bold my-3">
+        Welcome to your
+      </h1>
       <div className="animated-typing">
         <Typed
-          className="lg:text-7xl font-bold"
+          className="lg:text-7xl text-4xl font-bold md:text-6xl"
           strings={["Virtual Study Hall", "Virtual Cafe", "Virtual Workspace"]}
           typeSpeed={150}
           backSpeed={100}
@@ -19,7 +21,8 @@ const Banner = () => {
         </p>
         <p>
           <span className="rounded-3xl p-2 px-4 border">
-          <i className="fa-solid fa-circle text-green-400"></i>  1225 Students Online Now
+            <i className="fa-solid fa-circle text-green-400"></i> 1225 Students
+            Online Now
           </span>
         </p>
       </div>
