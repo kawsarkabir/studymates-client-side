@@ -1,7 +1,28 @@
+import Typed from "react-typed";
 const Banner = () => {
   return (
-    <div>
-      <h1>banner is comming</h1>
+    <div className="max-w-screen-xl mx-auto flex flex-col justify-center items-center h-[70vh]">
+      <h1 className="lg:text-7xl font-bold my-3">Welcome to your</h1>
+      <div className="animated-typing">
+        <Typed
+          className="lg:text-7xl font-bold"
+          strings={["Virtual Study Hall", "Virtual Cafe", "Virtual Workspace"]}
+          typeSpeed={150}
+          backSpeed={100}
+          loop
+        />
+      </div>
+      <div className="text-center">
+        <p className="text-xl leading-6 my-8 w-2/3 mx-auto ">
+          StudyMates is the new way to connect and focus with other students
+          from all over the world
+        </p>
+        <p>
+          <span className="rounded-3xl p-2 px-4 border">
+          <i className="fa-solid fa-circle text-green-400"></i>  1225 Students Online Now
+          </span>
+        </p>
+      </div>
     </div>
   );
 };
