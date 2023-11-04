@@ -1,9 +1,34 @@
-import { Link } from "react-router-dom";
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import Swal from "sweetalert2";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const SignUp = () => {
+  const navigate = useNavigate();
+  const { createUser } = useContext(AuthContext);
+  const handleSignUp = (e) => {
+    e.preventDefault();
+    const form = e.target;
+    const name = form.name.value;
+    const email = form.email.value;
+    const photoURL = form.photoURL.value;
+    const password = form.password.value;
+    const user = { name, email, photoURL, password };
+    console.log(user);
+
+    // create user
+    createUser(email, password)
+      .then(() => {
+        navigate("/");
+        Swal.fire("Good job!", "Your Account Successfully Create!", "success");
+      })
+      .catch((error) => {
+        console.log(error.message);
+      });
+  };
   return (
     <div className="my-14 flex justify-center items-center">
-      <form className="form">
+      <form onSubmit={handleSignUp} className="form">
         <h1 className="text-center font-semibold text-3xl">Sign up now !</h1>
         <div className="flex-column">
           <label>Name </label>

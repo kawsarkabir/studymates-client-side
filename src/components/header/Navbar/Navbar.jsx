@@ -1,6 +1,19 @@
 import { Link, NavLink } from "react-router-dom";
+import { AuthContext } from "../../../provider/AuthProvider";
+import { useContext } from "react";
+import Swal from "sweetalert2";
 
 const Navbar = () => {
+  const { user, logOut } = useContext(AuthContext);
+  const handleSignOut = () => {
+    logOut()
+      .then(() => {
+        Swal.fire("Good job!", "Successfully logout!", "success");
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+  };
   const navLinks = (
     <>
       <li>
@@ -44,45 +57,35 @@ const Navbar = () => {
         </NavLink>
       </li>
       <li>
-        <NavLink
-          to="/signin"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Sign In
-        </NavLink>
-      </li>
-      <li>
-        <NavLink
-          to="/signup"
-          className={({ isActive, isPending }) =>
-            isPending ? "pending" : isActive ? "active" : ""
-          }
-        >
-          Sign Up
-        </NavLink>
-      </li>
-      <li>
-        <div className="dropdown dropdown-end relative bottom-3 left-3">
-          <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
-            <div className="w-10 rounded-full">
-              <img src="/images/stock/photo-1534528741775-53994a69daeb.jpg" />
-            </div>
-          </label>
-          <ul
-            tabIndex={0}
-            className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 relative top-14"
-          >
-            <li>
-              <Link className="justify-between">Name:</Link>
-            </li>
+        {user ? (
+          <>
+            <div className="dropdown dropdown-end relative bottom-4 left-3">
+              <label tabIndex={0} className="btn btn-ghost btn-circle avatar">
+                <div className="w-10 rounded-full">
+                  <img src={user?.photoURL} alt="" />
+                </div>
+              </label>
+              <ul
+                tabIndex={0}
+                className="mt-3 z-[1] p-2 shadow menu menu-sm dropdown-content bg-base-100 rounded-box w-52 relative top-14"
+              >
+                <li>
+                  <Link className="justify-between">
+                    Name: {user?.displayName}
+                  </Link>
+                </li>
 
-            <li>
-              <Link>Logout</Link>
-            </li>
-          </ul>
-        </div>
+                <li>
+                  <button onClick={handleSignOut}>Logout</button>
+                </li>
+              </ul>
+            </div>
+          </>
+        ) : (
+          <Link to={"/signin"}>
+            <button>Login</button>
+          </Link>
+        )}
       </li>
     </>
   );
@@ -124,7 +127,7 @@ const Navbar = () => {
           <h3>StudyMates</h3>
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex items-center">
+      <div className="navbar-center hidden lg:flex navbar-end">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
     </div>
