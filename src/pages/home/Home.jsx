@@ -1,3 +1,4 @@
+import Faq from "../../components/Faq/Faq";
 import Features from "../../components/Features/Features";
 import Feedback from "../../components/FeedBack/Feedback";
 import FindCommunity from "../../components/FindCommunity/FindCommunity";
@@ -16,6 +17,7 @@ const Home = () => {
       <FindCommunity></FindCommunity>
       <SupportSession></SupportSession>
       <Feedback></Feedback>
+      <Faq></Faq>
       <JoinTeam></JoinTeam>
       <Footer></Footer>
     </div>
