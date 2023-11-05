@@ -1,55 +1,86 @@
 import { useContext } from "react";
-import Swal from "sweetalert2";
+import { toast } from "react-toastify";
 import { AuthContext } from "../../provider/AuthProvider";
 
-const CreateAssingment = () => {
-    const {user} = useContext(AuthContext)
-  const handleCreateAssingment = (e) => {
+const CreateAssignment = () => {
+  const { user } = useContext(AuthContext);
+  const handleCreateAssignment = (e) => {
     e.preventDefault();
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
-    const assingmentImgURL = form.AssingmentImgURL.value;
-    const marks = form.Marks.value;
+    const assignmentImgURL = form.assignmentImgURL.value;
+    const marks = form.marks.value;
     const difficultyLevel = form.difficultyLevel.value;
-    const deoDate = form.deoDate.value;
-    const assingmentOwner = user?.email;
-    const assingmentCreateInfo = {
+    const dueDate = form.dueDate.value;
+    const assignmentOwner = user?.email;
+
+    // Validation
+    const errors = {};
+
+    if (!title.trim()) {
+      errors.title = "Title is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(title)) {
+      errors.title = "Title should only contain letters";
+    }
+
+    if (!description.trim()) {
+      errors.description = "Description is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(description)) {
+      errors.description = "Description should only contain letters";
+    }
+
+    if (!assignmentImgURL.trim()) {
+      errors.assignmentImgURL = "Assignment Image URL is required";
+    } else if (!/^[a-zA-Z\s]+$/.test(assignmentImgURL)) {
+      errors.assignmentImgURL = "Invalid URL format";
+    }
+
+    if (!marks.trim()) {
+      errors.marks = "Marks is required";
+    } else if (isNaN(marks)) {
+      errors.marks = "Marks must be a number";
+    }
+
+    if (Object.keys(errors).length > 0) {
+      // Show toasts for each error
+      Object.values(errors).forEach((error) => {
+        toast.error(error);
+      });
+      return;
+    }
+
+    const assignmentCreateInfo = {
       title,
       description,
-      assingmentImgURL,
+      assignmentImgURL,
       marks,
       difficultyLevel,
-      deoDate,
-      assingmentOwner
+      dueDate,
+      assignmentOwner,
     };
-    console.log(assingmentCreateInfo);
-    fetch("http://localhost:5000/assingments", {
+
+    fetch("http://localhost:5000/assignments", {
       method: "POST",
       headers: {
         "content-type": "application/json",
       },
-      body: JSON.stringify(assingmentCreateInfo),
+      body: JSON.stringify(assignmentCreateInfo),
     })
       .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        Swal.fire({
-          title: "success!",
-          text: "Successfully create your Assingment",
-          icon: "success",
-          confirmButtonText: "Cool",
-        });
+      .then(() => {
+        toast.success("Successfully created your Assignment");
       });
   };
+
   return (
     <div className="max-w-screen-xl mx-auto p-4">
       <h1 className="text-4xl font-extrabold my-5 text-center">
-        Create Assingment
+        Create Assignment
       </h1>
       <div className="">
         <form
-          onSubmit={handleCreateAssingment}
+          onSubmit={handleCreateAssignment}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-items-center mt-10"
         >
           <input
@@ -65,13 +96,13 @@ const CreateAssingment = () => {
             className="input input-bordered input-md w-full max-w-md"
           />
           <input
-            name="AssingmentImgURL"
+            name="assignmentImgURL"
             type="text"
-            placeholder="Assingment imgURL"
+            placeholder="Assignment Image URL"
             className="input input-bordered input-md w-full max-w-md"
           />
           <input
-            name="Marks"
+            name="marks"
             type="text"
             placeholder="Marks"
             className="input input-bordered input-md w-full max-w-md"
@@ -88,13 +119,13 @@ const CreateAssingment = () => {
             <option>Hard</option>
           </select>
           <input
-            name="deoDate"
+            name="dueDate"
             type="date"
-            placeholder="Deo Date"
+            placeholder="Due Date"
             className="input input-bordered input-md w-full max-w-md"
           />
           <div className="col-span-2">
-            <button className="btn btn-wide">Create Assingment</button>
+            <button className="btn btn-wide">Create Assignment</button>
           </div>
         </form>
       </div>
@@ -102,4 +133,4 @@ const CreateAssingment = () => {
   );
 };
 
-export default CreateAssingment;
+export default CreateAssignment;
