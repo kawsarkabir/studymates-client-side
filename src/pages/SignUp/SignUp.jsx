@@ -2,10 +2,11 @@ import { useContext } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
+import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { createUser } = useContext(AuthContext);
+  const { createUser, profileUpdate } = useContext(AuthContext);
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -13,17 +14,30 @@ const SignUp = () => {
     const email = form.email.value;
     const photoURL = form.photoURL.value;
     const password = form.password.value;
-    const user = { name, email, photoURL, password };
-    console.log(user);
+    // const user = { name, email, photoURL, password };
+
+    // validations for user register
+    let passwordRegex = /^(?=.*[!@#$%^&*()_+{}[\]:;<>,.?~\\/-]).+$/;
+    if (password.length < 6) {
+      toast.error("Passwords must be at least 6 characters long");
+      return false;
+    } else if (!/[A-Z]/.test(password)) {
+      toast.error("Password must contain at least one uppercase letter");
+      return false;
+    } else if (!passwordRegex.test(password)) {
+      toast.error("Password must contain at least one Spicial charactor");
+      return false;
+    }
 
     // create user
     createUser(email, password)
       .then(() => {
         navigate("/");
         Swal.fire("Good job!", "Your Account Successfully Create!", "success");
+        profileUpdate(name, photoURL)
       })
-      .catch((error) => {
-        console.log(error.message);
+      .catch(() => {
+        toast.error("Invalid Your user Name and Password");
       });
   };
   return (

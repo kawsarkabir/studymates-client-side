@@ -3,6 +3,7 @@ import "./SignIn.css";
 import Swal from "sweetalert2";
 import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import { toast } from "react-toastify";
 const SignIn = () => {
   const { signIn, signInGoogle } = useContext(AuthContext);
   const location = useLocation();
@@ -20,8 +21,8 @@ const SignIn = () => {
         Swal.fire("Good job!", "Successfully Login!", "success");
         navigate(location?.state ? location.state : "/");
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch(() => {
+        toast.error("password and email doesnot match");
       });
 
     // sign in with google
@@ -31,8 +32,8 @@ const SignIn = () => {
       .then(() => {
         navigate(location?.state ? location.state : "/");
       })
-      .catch((err) => {
-        console.log(err.message);
+      .catch(() => {
+        toast.error("password and email doesnot match");
       });
   };
   return (
