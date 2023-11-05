@@ -48,6 +48,16 @@ const Navbar = () => {
       </li>
       <li>
         <NavLink
+          to="/submitedAssingment"
+          className={({ isActive, isPending }) =>
+            isPending ? "pending" : isActive ? "active" : ""
+          }
+        >
+          Submited Assingment
+        </NavLink>
+      </li>
+      <li>
+        <NavLink
           to="/createAssingment"
           className={({ isActive, isPending }) =>
             isPending ? "pending" : isActive ? "active" : ""
@@ -120,7 +130,7 @@ const Navbar = () => {
           <img src="https://i.ibb.co/6vMPTLn/1.png" className="w-24" alt="" />
         </Link>
       </div>
-      <div className="navbar-center hidden lg:flex navbar-end">
+      <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{navLinks}</ul>
       </div>
     </div>

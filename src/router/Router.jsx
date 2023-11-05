@@ -6,6 +6,7 @@ import SignUp from "../pages/SignUp/SignUp";
 import AllAssingment from "../pages/AllAssingment/AllAssingment";
 import MyAssingment from "../pages/MyAssingment/MyAssingment";
 import CreateAssingment from "../pages/CreateAssignment/CreateAssingment";
+import SubmitedAssingment from "../pages/SubmitedAssingment/SubmitedAssingment";
 
 const Router = createBrowserRouter([
   {
@@ -19,10 +20,15 @@ const Router = createBrowserRouter([
       {
         path: "/allAssingment",
         element: <AllAssingment></AllAssingment>,
+        loader: ()=> fetch('http://localhost:5000/assingments')
       },
       {
         path: "/myAssingment",
-        element:<MyAssingment></MyAssingment>,
+        element: <MyAssingment></MyAssingment>,
+      },
+      {
+        path: "/submitedAssingment",
+        element: <SubmitedAssingment></SubmitedAssingment>,
       },
       {
         path: "/createAssingment",
@@ -33,8 +39,8 @@ const Router = createBrowserRouter([
         element: <SignIn></SignIn>,
       },
       {
-        path: '/signup', 
-        element: <SignUp></SignUp>
+        path: "/signup",
+        element: <SignUp></SignUp>,
       },
     ],
   },
