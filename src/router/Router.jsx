@@ -9,6 +9,7 @@ import CreateAssingment from "../pages/CreateAssignment/CreateAssingment";
 import SubmitedAssingment from "../pages/SubmitedAssingment/SubmitedAssingment";
 import PrivateRoute from "./PrivateRoute";
 import ViewAssingment from "../pages/ViewAssingment/ViewAssingment";
+import UpdateAssingment from "../pages/UpdateAssingment/UpdateAssingment";
 
 const Router = createBrowserRouter([
   {
@@ -26,8 +27,23 @@ const Router = createBrowserRouter([
       },
       {
         path: "/assingments/:id",
-        element: <PrivateRoute><ViewAssingment></ViewAssingment></PrivateRoute>,
-        loader: ({params}) => fetch(`http://localhost:5000/assingments/${params.id}`),
+        element: (
+          <PrivateRoute>
+            <ViewAssingment></ViewAssingment>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assingments/${params.id}`),
+      },
+      {
+        path: "/updateAssingment/:id",
+        element: (
+          <PrivateRoute>
+            <UpdateAssingment></UpdateAssingment>
+          </PrivateRoute>
+        ),
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/assingments/${params.id}`),
       },
       {
         path: "/myAssingment",

@@ -1,6 +1,6 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const DisplayAssingment = ({ assingment }) => {
+const DisplayAssingment = ({ SingleAssingment }) => {
   const {
     title,
     assingmentImgURL,
@@ -8,8 +8,8 @@ const DisplayAssingment = ({ assingment }) => {
     marks,
     deoDate,
     difficultyLevel,
-    _id
-  } = assingment || {};
+    _id,
+  } = SingleAssingment || {};
   return (
     <div>
       <div className="card bg-base-100 shadow-xl">
@@ -32,7 +32,9 @@ const DisplayAssingment = ({ assingment }) => {
             <Link to={`/assingments/${_id}`}>
               <button className="btn btn-outline btn-sm">View Details</button>
             </Link>
-            <button className="btn btn-outline btn-sm">Update </button>
+            <Link to={`/updateAssingment/${_id}`}>
+              <button className="btn btn-outline btn-sm">Update </button>
+            </Link>
           </div>
         </div>
       </div>
@@ -40,6 +42,6 @@ const DisplayAssingment = ({ assingment }) => {
   );
 };
 DisplayAssingment.propTypes = {
-  assingment: PropTypes.object.isRequired,
+  SingleAssingment: PropTypes.object.isRequired,
 };
 export default DisplayAssingment;
