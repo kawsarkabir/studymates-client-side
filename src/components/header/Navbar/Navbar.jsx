@@ -90,7 +90,7 @@ const Navbar = () => {
     </>
   );
   return (
-    <div className="navbar bg-base-100 max-w-screen-xl mx-auto mt-4">
+    <div className="navbar bg-base-100 max-w-screen-xl mx-auto">
       <div className="navbar-start">
         <div className="dropdown">
           <label tabIndex={0} className="btn btn-ghost lg:hidden">
@@ -116,15 +116,8 @@ const Navbar = () => {
             {navLinks}
           </ul>
         </div>
-        <Link to={"/"} className="text-xl font-semibold lg:mb-8">
-          {/*  <div className="avatar">
-            <div className="w-16 rounded-full">
-              <img src="https://i.ibb.co/zRBYL2V/study-logo.png" />
-              
-            </div>
-            
-          </div> */}
-          <h3>StudyMates</h3>
+        <Link to={"/"} className="relative bottom-3">
+          <img src="https://i.ibb.co/6vMPTLn/1.png" className="w-24" alt="" />
         </Link>
       </div>
       <div className="navbar-center hidden lg:flex navbar-end">

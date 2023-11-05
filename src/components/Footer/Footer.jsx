@@ -3,8 +3,8 @@ import { Link } from "react-router-dom";
 const Footer = () => {
   return (
     <div className="max-w-screen-xl mx-auto">
-      <div className="flex justify-center my-8">
-        <img src="https://i.ibb.co/mXKTYxf/logo.png" alt="" />
+      <div className="flex justify-center">
+        <img src="https://i.ibb.co/6vMPTLn/1.png" alt="" className="w-48" />
       </div>
       <footer className="footer p-10  text-base-content justify-items-center justify-between">
         <nav>
