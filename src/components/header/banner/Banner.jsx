@@ -1,7 +1,15 @@
 import Typed from "react-typed";
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const Banner = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
-    <div className="max-w-screen-xl mx-auto flex flex-col justify-center items-center h-[75vh]">
+    <div data-aos="fade-down" className="max-w-screen-xl mx-auto flex flex-col justify-center items-center h-[75vh]">
       <h1 className="lg:text-7xl text-4xl md:text-6xl font-bold my-3">
         Welcome to your
       </h1>

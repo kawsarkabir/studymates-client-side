@@ -1,6 +1,14 @@
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const OurComunity = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
-    <div className="max-w-screen-xl mx-auto my-20 text-center p-4">
+    <div data-aos="fade-right" className="max-w-screen-xl mx-auto my-20 text-center p-4">
       <h1 className="text-2xl lg:text-4xl md:text-3xl">
         Our <span className="font-bold">student community</span> is{" "}
         <span className="font-bold">more than one million </span> strong

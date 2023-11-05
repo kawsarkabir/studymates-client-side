@@ -1,8 +1,16 @@
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const FindCommunity = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
     <div className="bg-[#F5F0F6] p-20 my-20">
       <div className="max-w-screen-xl mx-auto">
-        <div className="text-center">
+        <div data-aos="fade-down" className="text-center">
           <p className="font-extrabold text-[#FF6F61]">
             Not just a study stream room
           </p>
@@ -12,13 +20,13 @@ const FindCommunity = () => {
           </h1>
         </div>
         <div className="grid lg:grid-cols-2 md:grid-cols-2 grid-cols-1 gap-10 justify-items-center mt-20">
-          <div>
+          <div data-aos="fade-right">
             <img
               src="https://i.ibb.co/K63BWv4/61a7ec9cdc0efa85574c8dde-618938b8d3815dbd8796c6ae-st-tool-1-min.png"
               alt=""
             />
           </div>
-          <div>
+          <div data-aos="fade-left">
             <h1 className="font-extrabold text-2xl">Stronger together 💪</h1>
             <p className="my-4">
               Imagine a world in which studying is actually enjoyable. A world

@@ -1,6 +1,14 @@
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const Faq = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
-    <div className="max-w-screen-xl mx-auto p-5 mt-10">
+    <div data-aos="fade-left" className="max-w-screen-xl mx-auto p-5 mt-10">
       <h1 className=" font-extrabold text-4xl my-3 text-center">FAQ</h1>
       <p className="mt-5 text-center">
         Check out the most frequently asked questions, we are here for you

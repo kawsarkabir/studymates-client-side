@@ -1,16 +1,8 @@
 import { Link } from "react-router-dom";
-/* import AOS from "aos";
-import "aos/dist/aos.css";
-import { useEffect } from "react"; */
 
 const Footer = () => {
- /*  useEffect(() => {
-    AOS.init({
-      duration: 1000,
-    });
-  }, []) */
   return (
-    <div data-aos="fade-up" className="max-w-screen-xl mx-auto">
+    <div className="max-w-screen-xl mx-auto">
       <div className="flex justify-center my-8">
         <img src="https://i.ibb.co/mXKTYxf/logo.png" alt="" />
       </div>

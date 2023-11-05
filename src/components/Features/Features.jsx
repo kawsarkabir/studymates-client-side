@@ -1,7 +1,14 @@
 import { useEffect, useState } from "react";
 import DisplayFeature from "./DisplayFeature";
+import "aos/dist/aos.css";
+import Aos from "aos";
 
 const Features = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   const [features, setFeatures] = useState([]);
   useEffect(() => {
     fetch("features.json")
@@ -13,7 +20,7 @@ const Features = () => {
       <h1 className="text-5xl font-extrabold text-center">
         Discover Study Mates
       </h1>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-10">
+      <div data-aos="fade-down" className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10 justify-items-center mt-10">
         {features?.map((feature) => (
           <DisplayFeature key={feature.id} feature={feature}></DisplayFeature>
         ))}

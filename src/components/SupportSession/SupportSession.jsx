@@ -1,8 +1,15 @@
 import { Link } from "react-router-dom";
-
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const SupportSession = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
-    <div className="my-20 max-w-screen-xl mx-auto p-4">
+    <div data-aos="fade-down" className="my-20 max-w-screen-xl mx-auto p-4">
       <div className="text-center">
         <p className="font-extrabold text-[#FF6F61]">
           The benefits of studying online in one of our study groups

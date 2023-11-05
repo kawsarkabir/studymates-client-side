@@ -2,10 +2,17 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import { Pagination } from "swiper/modules";
-
+import "aos/dist/aos.css";
+import { useEffect } from "react";
+import Aos from "aos";
 const Feedback = () => {
+  useEffect(() => {
+    Aos.init({
+      duration: 1000,
+    });
+  }, []);
   return (
-    <div className="max-w-screen-xl mx-auto">
+    <div data-aos="fade-down" className="max-w-screen-xl mx-auto">
       <div className="w-3/4 text-center mx-auto">
         <h1 className="text-4xl font-extrabold">
           Don’t just take our word for it
