@@ -7,6 +7,8 @@ import AllAssingment from "../pages/AllAssingment/AllAssingment";
 import MyAssingment from "../pages/MyAssingment/MyAssingment";
 import CreateAssingment from "../pages/CreateAssignment/CreateAssingment";
 import SubmitedAssingment from "../pages/SubmitedAssingment/SubmitedAssingment";
+import PrivateRoute from "./PrivateRoute";
+import ViewAssingment from "../pages/ViewAssingment/ViewAssingment";
 
 const Router = createBrowserRouter([
   {
@@ -20,7 +22,12 @@ const Router = createBrowserRouter([
       {
         path: "/allAssingment",
         element: <AllAssingment></AllAssingment>,
-        loader: ()=> fetch('http://localhost:5000/assingments')
+        loader: () => fetch("http://localhost:5000/assingments"),
+      },
+      {
+        path: "/assingments/:id",
+        element: <PrivateRoute><ViewAssingment></ViewAssingment></PrivateRoute>,
+        loader: ({params}) => fetch(`http://localhost:5000/assingments/${params.id}`),
       },
       {
         path: "/myAssingment",
@@ -32,7 +39,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/createAssingment",
-        element: <CreateAssingment></CreateAssingment>,
+        element: (
+          <PrivateRoute>
+            <CreateAssingment></CreateAssingment>
+          </PrivateRoute>
+        ),
       },
       {
         path: "/signin",

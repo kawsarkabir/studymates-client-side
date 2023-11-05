@@ -1,26 +1,38 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 const DisplayAssingment = ({ assingment }) => {
-    console.log(assingment);
-    const {title, assingmentImgURL, description, mark, deoDate, difficultyLevel} = assingment || {}
+  const {
+    title,
+    assingmentImgURL,
+    description,
+    marks,
+    deoDate,
+    difficultyLevel,
+    _id
+  } = assingment || {};
   return (
     <div>
-      <div className="card h-96 bg-base-100 shadow-xl">
+      <div className="card bg-base-100 shadow-xl">
         <figure>
-          <img
-            src={assingmentImgURL}
-            alt="Shoes" className="max-w-full"
-          />
+          <img src={assingmentImgURL} alt="Shoes" className="h-72" />
         </figure>
         <div className="card-body">
-          <h2 className="card-title">
+          <h2 className="card-title font-extrabold">
             {title}
-            <div className="badge badge-secondary">{difficultyLevel}</div>
+            <div className="badge bg-[#FF6F61] text-white">
+              {difficultyLevel}
+            </div>
           </h2>
-          <p>{description}</p>
-          <p>Marks: {mark}  Deo Date: {deoDate} </p>
-          <div className="card-actions justify-end">
-            <button className="badge badge-outline">View Assingment</button>
-            <button className="badge badge-outline">Update Assingment</button>
+          <p className="text-lg">{description}</p>
+          <p>
+            <span className="font-bold">Deo Date:</span> {deoDate} <br />
+            <span className="font-bold">Marks: </span> {marks}
+          </p>
+          <div className=" mt-5 gap-x-3 flex justify-end">
+            <Link to={`/assingments/${_id}`}>
+              <button className="btn btn-outline btn-sm">View Details</button>
+            </Link>
+            <button className="btn btn-outline btn-sm">Update </button>
           </div>
         </div>
       </div>
@@ -28,6 +40,6 @@ const DisplayAssingment = ({ assingment }) => {
   );
 };
 DisplayAssingment.propTypes = {
-    assingment: PropTypes.object.isRequired,
-  };
+  assingment: PropTypes.object.isRequired,
+};
 export default DisplayAssingment;

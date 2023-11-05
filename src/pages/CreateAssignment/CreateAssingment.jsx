@@ -1,6 +1,9 @@
+import { useContext } from "react";
 import Swal from "sweetalert2";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const CreateAssingment = () => {
+    const {user} = useContext(AuthContext)
   const handleCreateAssingment = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -10,6 +13,7 @@ const CreateAssingment = () => {
     const marks = form.Marks.value;
     const difficultyLevel = form.difficultyLevel.value;
     const deoDate = form.deoDate.value;
+    const assingmentOwner = user?.email;
     const assingmentCreateInfo = {
       title,
       description,
@@ -17,6 +21,7 @@ const CreateAssingment = () => {
       marks,
       difficultyLevel,
       deoDate,
+      assingmentOwner
     };
     console.log(assingmentCreateInfo);
     fetch("http://localhost:5000/assingments", {
