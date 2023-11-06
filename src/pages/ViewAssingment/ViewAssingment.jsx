@@ -1,4 +1,5 @@
 import { useLoaderData } from "react-router-dom";
+import Modal from "./Modal";
 
 const ViewAssingment = () => {
   const viewAssingment = useLoaderData();
@@ -10,11 +11,15 @@ const ViewAssingment = () => {
     deoDate,
     difficultyLevel,
   } = viewAssingment || {};
+  // modal handle
+  const handleShowModal = () => {
+    document.getElementById("view_Assingment_modal").showModal();
+  };
   return (
-    <div className="max-w-screen-xl mx-auto flex justify-center p-4">
+    <div className="max-w-screen-xl mx-auto flex justify-center p-4 mb-10">
       <div>
         <img src={assingmentImgURL} alt="" className="max-w-full" />
-        
+
         <div className="space-y-2">
           <h1 className="font-extrabold text-4xl mt-4">
             {title}{" "}
@@ -22,14 +27,17 @@ const ViewAssingment = () => {
           </h1>
 
           <p className="text-xl">
-           <span className="font-bold"> Marks:</span> {marks} <span className="font-bold">Deo Date:</span> {deoDate}{" "}
+            <span className="font-bold"> Marks:</span> {marks}{" "}
+            <span className="font-bold">Deo Date:</span> {deoDate}{" "}
           </p>
           <p className="text-xl">{description}</p>
         </div>
         <div>
-          <button className="btn btn-outline mt-4">Take assingment</button>
+          <button onClick={handleShowModal} className="btn btn-outline mt-4">
+            Take assingment
+          </button>
+          <Modal></Modal>
         </div>
-    
       </div>
     </div>
   );
