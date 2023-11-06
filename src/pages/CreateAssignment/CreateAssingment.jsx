@@ -1,6 +1,7 @@
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../provider/AuthProvider";
+import axios from "axios";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -13,7 +14,7 @@ const CreateAssignment = () => {
     const marks = form.marks.value;
     const difficultyLevel = form.difficultyLevel.value;
     const dueDate = form.dueDate.value;
-    const assignmentOwner = user?.email;
+    const assignmentOwner = user;
 
     // Validation
     const errors = {};
@@ -32,8 +33,6 @@ const CreateAssignment = () => {
 
     if (!assignmentImgURL.trim()) {
       errors.assignmentImgURL = "Assignment Image URL is required";
-    } else if (!/^[a-zA-Z\s]+$/.test(assignmentImgURL)) {
-      errors.assignmentImgURL = "Invalid URL format";
     }
 
     if (!marks.trim()) {
@@ -60,14 +59,8 @@ const CreateAssignment = () => {
       assignmentOwner,
     };
 
-    fetch("http://localhost:5000/assignments", {
-      method: "POST",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(assignmentCreateInfo),
-    })
-      .then((res) => res.json())
+    axios
+      .post("http://localhost:5000/assingments", assignmentCreateInfo)
       .then(() => {
         toast.success("Successfully created your Assignment");
       });

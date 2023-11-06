@@ -2,21 +2,26 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
+// import PropTypes from "prop-types";
 
-const Modal = () => {
+const Modal = ({ marks, title }) => {
   const { user } = useContext(AuthContext);
   const handleSubmitAssingment = (e) => {
     e.preventDefault();
     const form = e.target;
     const assingmentPDFLink = form.assingmentPDFLink.value;
     const quickNote = form.quickNote.value;
-    const assingmentStatus = "pending";
-    const submitedUser = user?.email;
+    const submitedUserEmail = user?.email;
+    const submitedUserName = user?.displayName;
+
     const submitedAssingment = {
       assingmentPDFLink,
       quickNote,
-      submitedUser,
-      assingmentStatus,
+      submitedUserEmail,
+      submitedUserName,
+      assingmentStatus: "pending",
+      marks,
+      title,
     };
     axios
       .post("http://localhost:5000/submitedAssingments", submitedAssingment)
@@ -52,7 +57,24 @@ const Modal = () => {
           </form>
           <div className="modal-action">
             <form method="dialog">
-              <button className="btn">Close</button>
+              <div className="absolute right-2 top-2">
+                <button className="btn btn-circle btn-outline">
+                  <svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    className="h-6 w-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth="2"
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
             </form>
           </div>
         </div>
@@ -60,5 +82,9 @@ const Modal = () => {
     </div>
   );
 };
+/* DisplaySubmitedAssingment.propTypes = {
+  marks: PropTypes.object.isRequired,
+  title: PropTypes.object.isRequired,
+}; */
 
 export default Modal;

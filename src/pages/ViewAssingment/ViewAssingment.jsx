@@ -36,7 +36,7 @@ const ViewAssingment = () => {
           <button onClick={handleShowModal} className="btn btn-outline mt-4">
             Take assingment
           </button>
-          <Modal></Modal>
+          <Modal title={title} marks={marks}></Modal>
         </div>
       </div>
     </div>
