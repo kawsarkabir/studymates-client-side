@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
 import { toast } from "react-toastify";
-// import PropTypes from "prop-types";
+import PropTypes from "prop-types";
 
 const Modal = ({ marks, title }) => {
   const { user } = useContext(AuthContext);
@@ -82,9 +82,9 @@ const Modal = ({ marks, title }) => {
     </div>
   );
 };
-/* DisplaySubmitedAssingment.propTypes = {
+Modal.propTypes = {
   marks: PropTypes.object.isRequired,
   title: PropTypes.object.isRequired,
-}; */
+};
 
 export default Modal;

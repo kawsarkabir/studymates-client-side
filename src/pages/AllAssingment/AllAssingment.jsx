@@ -1,37 +1,28 @@
 import { useLoaderData } from "react-router-dom";
 import DisplayAssingment from "./DisplayAssingment";
 import { useEffect, useState } from "react";
-import axios from "axios";
 
 const AllAssingment = () => {
   const loadingAssingments = useLoaderData();
-  const [assingment, setAssingment] = useState(loadingAssingments);
-  const [level, setLevel] = useState(null);
+
+  const [assingment, setAssingment] = useState([]);
+  const [level, setLevel] = useState("default");
 
   const handleChange = (e) => {
     setLevel(e.target.value);
   };
 
   useEffect(() => {
-    axios
-      .get(`http://localhost:5000/assingments?difficultyLevel=${level}`)
-      .then((res) => {
-        setAssingment(res.data);
-      });
-
-    /* fetch(`http://localhost:5000/assingments?difficultyLevel=${level}`)
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAssingment(data); */
-
-    /*  const filteringData = level?.filter(
-          (filterItem) =>
-            filterItem.difficultyLevel === assingments.difficultyLevel
-        );
-        console.log(filteringData); */
-    // });
-  }, [level]);
+    if (level === "default") {
+      setAssingment(loadingAssingments);
+    } else {
+      const filtered = loadingAssingments.filter(
+        (item) => item.difficultyLevel === level
+      );
+      setAssingment(filtered);
+      console.log(filtered);
+    }
+  }, [level, loadingAssingments]);
 
   return (
     <div className="max-w-screen-xl mx-auto mb-10 p-4">

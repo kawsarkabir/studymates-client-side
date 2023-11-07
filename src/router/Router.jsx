@@ -49,7 +49,8 @@ const Router = createBrowserRouter([
       {
         path: "/myAssingment",
         element: <MyAssingment></MyAssingment>,
-        loader: ()=> fetch('http://localhost:5000/markingAssingment')
+        loader: () =>
+          fetch("http://localhost:5000/submitedAssingment/complete"),
       },
       {
         path: "/submitedAssingment",
@@ -58,13 +59,13 @@ const Router = createBrowserRouter([
             <SubmitedAssingment></SubmitedAssingment>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/submitedAssingments"),
+        loader: () => fetch("http://localhost:5000/submitedAssingment/pending"),
       },
       {
         path: "/submitedAssingment/:id",
         element: <GiveAssingmentMarks></GiveAssingmentMarks>,
-        loader: ({params})=> fetch(`http://localhost:5000/submitedAssingments/${params.id}`)
-        
+        loader: ({ params }) =>
+          fetch(`http://localhost:5000/submitedAssingments/${params.id}`),
       },
       {
         path: "/createAssingment",
