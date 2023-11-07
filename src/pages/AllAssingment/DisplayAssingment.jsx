@@ -1,8 +1,13 @@
 import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
-const DisplayAssingment = ({ SingleAssingment }) => {
+import Swal from "sweetalert2";
+import { AuthContext } from "../../provider/AuthProvider";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
   const {
     title,
+    assignmentOwner,
     assignmentImgURL,
     description,
     marks,
@@ -10,6 +15,38 @@ const DisplayAssingment = ({ SingleAssingment }) => {
     difficultyLevel,
     _id,
   } = SingleAssingment || {};
+  const { user } = useContext(AuthContext);
+
+  // handle delete assingment
+  const handleDeleteAssingment = (id) => {
+    console.log(assignmentOwner, user?.email);
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then((result) => {
+      if (result.isConfirmed && assignmentOwner === user?.email) {
+        fetch(`http://localhost:5000/assingments/${id}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then(() => {
+            Swal.fire("Deleted!", "Your product has been deleted.", "success");
+            const remainingAssingment = assingment.filter(
+              (product) => product._id !== id
+            );
+            setAssingment(remainingAssingment);
+          });
+      } else {
+        toast.error("you cannot deleted others create assingmet");
+      }
+    });
+  };
+
   return (
     <div>
       <div className="card bg-base-100 shadow-xl">
@@ -32,6 +69,14 @@ const DisplayAssingment = ({ SingleAssingment }) => {
             <Link to={`/assingments/${_id}`}>
               <button className="btn btn-outline btn-sm">View Details</button>
             </Link>
+
+            <button
+              onClick={() => handleDeleteAssingment(_id)}
+              className="btn btn-outline btn-sm"
+            >
+              Delete{" "}
+            </button>
+
             <Link to={`/updateAssingment/${_id}`}>
               <button className="btn btn-outline btn-sm">Update </button>
             </Link>
@@ -43,5 +88,6 @@ const DisplayAssingment = ({ SingleAssingment }) => {
 };
 DisplayAssingment.propTypes = {
   SingleAssingment: PropTypes.object.isRequired,
+  handleDeleteAssingment: PropTypes.func.isRequired,
 };
 export default DisplayAssingment;

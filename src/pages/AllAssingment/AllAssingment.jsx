@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 const AllAssingment = () => {
   const loadingAssingments = useLoaderData();
-
+  console.log(loadingAssingments);
   const [assingment, setAssingment] = useState([]);
   const [level, setLevel] = useState("default");
 
@@ -19,8 +19,8 @@ const AllAssingment = () => {
       const filtered = loadingAssingments.filter(
         (item) => item.difficultyLevel === level
       );
-      setAssingment(filtered);
       console.log(filtered);
+      setAssingment(filtered);
     }
   }, [level, loadingAssingments]);
 
@@ -28,7 +28,7 @@ const AllAssingment = () => {
     <div className="max-w-screen-xl mx-auto mb-10 p-4">
       <div className="flex items-center gap-x-2">
         <h1 className="text-3xl font-extrabold my-10">
-          Filtering By Difecult Level
+          Filtering By Difficulty Level
         </h1>
         <select
           onChange={handleChange}
@@ -38,14 +38,16 @@ const AllAssingment = () => {
           <option disabled selected>
             Filter
           </option>
-          <option value={"Easy"}>Easy</option>
-          <option value={"Medium"}>Medium</option>
-          <option value={"Hard"}>Hard</option>
+          <option value="Easy">Easy</option>
+          <option value="Medium">Medium</option>
+          <option value="Hard">Hard</option>
         </select>
       </div>
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 justify-items-center gap-x-6 gap-y-10">
         {assingment?.map((SingleAssingment) => (
           <DisplayAssingment
+          assingment={assingment}
+          setAssingment={setAssingment}
             key={SingleAssingment._id}
             SingleAssingment={SingleAssingment}
           ></DisplayAssingment>
