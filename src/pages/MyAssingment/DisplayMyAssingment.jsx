@@ -16,11 +16,6 @@ const DisplayMyAssingment = ({ myAssingment }) => {
           <span className="font-bold">Assingment Marks:</span> {ObtainMarks}
         </p>
         <p className="text-lg">{giveFeedback}</p>
-        <div className=" mt-3 flex justify-end">
-          <Link to={`/markingAssingment/${_id}`}>
-            <button className="btn btn-outline btn-sm">delete </button>
-          </Link>
-        </div>
       </div>
     </div>
   );

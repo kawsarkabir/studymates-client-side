@@ -14,7 +14,7 @@ const CreateAssignment = () => {
     const marks = form.marks.value;
     const difficultyLevel = form.difficultyLevel.value;
     const dueDate = form.dueDate.value;
-    const assignmentOwner = user;
+    const assignmentOwner = user?.email;
 
     // Validation
     const errors = {};
@@ -27,12 +27,6 @@ const CreateAssignment = () => {
 
     if (!description.trim()) {
       errors.description = "Description is required";
-    } else if (!/^[a-zA-Z\s]+$/.test(description)) {
-      errors.description = "Description should only contain letters";
-    }
-
-    if (!assignmentImgURL.trim()) {
-      errors.assignmentImgURL = "Assignment Image URL is required";
     }
 
     if (!marks.trim()) {
@@ -71,7 +65,7 @@ const CreateAssignment = () => {
       <h1 className="text-4xl font-extrabold my-5 text-center">
         Create Assignment
       </h1>
-      <div className="">
+      <div>
         <form
           onSubmit={handleCreateAssignment}
           className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-10 justify-items-center mt-10"

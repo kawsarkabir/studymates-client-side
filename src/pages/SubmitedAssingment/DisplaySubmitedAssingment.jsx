@@ -2,6 +2,7 @@ import PropTypes from "prop-types";
 import { Link } from "react-router-dom";
 
 const DisplaySubmitedAssingment = ({ submitAss }) => {
+  console.log(submitAss);
   const {
     submitedUserName,
     assingmentStatus,

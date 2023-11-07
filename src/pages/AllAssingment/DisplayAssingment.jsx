@@ -3,10 +3,10 @@ import { Link } from "react-router-dom";
 const DisplayAssingment = ({ SingleAssingment }) => {
   const {
     title,
-    assingmentImgURL,
+    assignmentImgURL,
     description,
     marks,
-    deoDate,
+    dueDate,
     difficultyLevel,
     _id,
   } = SingleAssingment || {};
@@ -14,7 +14,7 @@ const DisplayAssingment = ({ SingleAssingment }) => {
     <div>
       <div className="card bg-base-100 shadow-xl">
         <figure>
-          <img src={assingmentImgURL} alt="Shoes" className="h-72" />
+          <img src={assignmentImgURL} alt="Shoes" className="h-72" />
         </figure>
         <div className="card-body">
           <h2 className="card-title font-extrabold">
@@ -25,7 +25,7 @@ const DisplayAssingment = ({ SingleAssingment }) => {
           </h2>
           <p className="text-lg">{description}</p>
           <p>
-            <span className="font-bold">Deo Date:</span> {deoDate} <br />
+            <span className="font-bold">Deo Date:</span> {dueDate} <br />
             <span className="font-bold">Marks: </span> {marks}
           </p>
           <div className=" mt-5 gap-x-3 flex justify-end">

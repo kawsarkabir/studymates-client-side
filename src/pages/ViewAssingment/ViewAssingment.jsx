@@ -5,7 +5,7 @@ const ViewAssingment = () => {
   const viewAssingment = useLoaderData();
   const {
     title,
-    assingmentImgURL,
+    assignmentImgURL,
     description,
     marks,
     deoDate,
@@ -18,7 +18,7 @@ const ViewAssingment = () => {
   return (
     <div className="max-w-screen-xl mx-auto flex justify-center p-4 mb-10">
       <div>
-        <img src={assingmentImgURL} alt="" className="max-w-full" />
+        <img src={assignmentImgURL} alt="" className="max-w-3xl"  />
 
         <div className="space-y-2">
           <h1 className="font-extrabold text-4xl mt-4">

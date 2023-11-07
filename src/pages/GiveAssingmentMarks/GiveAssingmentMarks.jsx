@@ -3,7 +3,7 @@ import { useLoaderData } from "react-router-dom";
 
 const GiveAssingmentMarks = () => {
   const giveMarks = useLoaderData();
-  const { title, _id } = giveMarks;
+  const { assingmentPDFLink, quickNote, title, _id } = giveMarks;
 
   const handleGiveMarks = (e) => {
     e.preventDefault();
@@ -25,15 +25,19 @@ const GiveAssingmentMarks = () => {
   };
   return (
     <div className="max-w-screen-xl mx-auto flex justify-center">
-      <div className="modal-box text-center">
+      <div className="w-1/2 text-center">
         <h1 className="font-bold text-2xl my-4">Gives Assingment Marks</h1>
+        <div className="my-4">
+          <div>Here is view in ReactPDFViewer: {assingmentPDFLink}</div>
+          <p>quickNote by examinee: {quickNote}</p>
+        </div>
         <form onSubmit={handleGiveMarks}>
-          <div>
+          <div className="flex flex-col p-4">
             <input
               name="marks"
               type="text"
               placeholder="marks"
-              className="input input-bordered w-full max-w-xs"
+              className="input input-bordered"
             />
             <textarea
               name="giveFeedback"
@@ -42,7 +46,7 @@ const GiveAssingmentMarks = () => {
               rows={2}
               cols={34}
             ></textarea>
-            <button className="btn btn-outline">Submit assingment</button>
+            <button className="btn btn-outline">Give assingment</button>
           </div>
         </form>
       </div>

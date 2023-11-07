@@ -9,10 +9,10 @@ const UpdateAssingment = () => {
   const loadedAssingment = useLoaderData();
   const {
     title,
-    assingmentImgURL,
+    assignmentImgURL,
     description,
     marks,
-    deoDate,
+    dueDate,
     difficultyLevel,
     _id,
   } = loadedAssingment;
@@ -25,7 +25,7 @@ const UpdateAssingment = () => {
     const assingmentImgURL = form.AssingmentImgURL.value;
     const marks = form.Marks.value;
     const difficultyLevel = form.difficultyLevel.value;
-    const deoDate = form.deoDate.value;
+    const dueDate = form.deoDate.value;
     const assingmentOwner = user?.email;
     const assingmentUpdateInfo = {
       title,
@@ -33,7 +33,7 @@ const UpdateAssingment = () => {
       assingmentImgURL,
       marks,
       difficultyLevel,
-      deoDate,
+      dueDate,
       assingmentOwner,
     };
     fetch(`http://localhost:5000/assingments/${_id}`, {
@@ -81,7 +81,7 @@ const UpdateAssingment = () => {
           <input
             name="AssingmentImgURL"
             type="text"
-            defaultValue={assingmentImgURL}
+            defaultValue={assignmentImgURL}
             placeholder="Assingment imgURL"
             className="input input-bordered input-md w-full max-w-md"
           />
@@ -107,7 +107,7 @@ const UpdateAssingment = () => {
           <input
             name="deoDate"
             type="date"
-            defaultValue={deoDate}
+            defaultValue={dueDate}
             placeholder="Deo Date"
             className="input input-bordered input-md w-full max-w-md"
           />

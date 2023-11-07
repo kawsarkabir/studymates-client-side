@@ -48,7 +48,11 @@ const Router = createBrowserRouter([
       },
       {
         path: "/myAssingment",
-        element: <MyAssingment></MyAssingment>,
+        element: (
+          <PrivateRoute>
+            <MyAssingment></MyAssingment>
+          </PrivateRoute>
+        ),
         loader: () =>
           fetch("http://localhost:5000/submitedAssingment/complete"),
       },
