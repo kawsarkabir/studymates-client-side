@@ -19,7 +19,6 @@ const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
 
   // handle delete assingment
   const handleDeleteAssingment = (id) => {
-    console.log(assignmentOwner, user?.email);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -88,6 +87,7 @@ const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
 };
 DisplayAssingment.propTypes = {
   SingleAssingment: PropTypes.object.isRequired,
-  handleDeleteAssingment: PropTypes.func.isRequired,
+  assingment: PropTypes.array.isRequired,
+  setAssingment: PropTypes.func.isRequired,
 };
 export default DisplayAssingment;

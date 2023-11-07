@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 
 const AllAssingment = () => {
   const loadingAssingments = useLoaderData();
-  console.log(loadingAssingments);
   const [assingment, setAssingment] = useState([]);
   const [level, setLevel] = useState("default");
 
