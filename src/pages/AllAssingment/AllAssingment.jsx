@@ -18,7 +18,6 @@ const AllAssingment = () => {
       const filtered = loadingAssingments.filter(
         (item) => item.difficultyLevel === level
       );
-      console.log(filtered);
       setAssingment(filtered);
     }
   }, [level, loadingAssingments]);

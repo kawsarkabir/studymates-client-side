@@ -63,7 +63,7 @@ const Router = createBrowserRouter([
             <SubmitedAssingment></SubmitedAssingment>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/submitedAssingment/pending"),
+        loader: () => fetch("http://localhost:5000/pending/pending"),
       },
       {
         path: "/submitedAssingment/:id",

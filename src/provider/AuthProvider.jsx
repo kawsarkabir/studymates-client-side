@@ -10,6 +10,7 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../configs/firebase.config";
+import axios from "axios";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -19,10 +20,10 @@ const AuthProvider = ({ children }) => {
 
   useEffect(() => {
     const unSubscribe = onAuthStateChanged(auth, (currentUser) => {
-      /*  const userEmail = currentUser?.email || user?.email;
-      const logedUser = { email: userEmail }; */
+      const userEmail = currentUser?.email || user?.email;
+      const logedUser = { email: userEmail };
       //  ==================== Generate Token if user is exits  ============
-      /*  if (currentUser) {
+      if (currentUser) {
         axios
           .post("http://localhost:5000/jwt", logedUser, {
             withCredentials: true,
@@ -34,7 +35,7 @@ const AuthProvider = ({ children }) => {
         axios.post("http://localhost:5000/logOutWithclearCookie", logedUser, {
           withCredentials: true,
         });
-      } */
+      }
       setUser(currentUser);
       console.log("current user observed", currentUser);
       setLoading(false);
@@ -42,7 +43,7 @@ const AuthProvider = ({ children }) => {
     return () => {
       return unSubscribe();
     };
-  }, []);
+  }, [user?.email]);
 
   // create a new user
   const createUser = (email, password) => {
@@ -82,7 +83,7 @@ const AuthProvider = ({ children }) => {
     signIn,
     signInGoogle,
     logOut,
-    profileUpdate
+    profileUpdate,
   };
   return (
     <AuthContext.Provider value={userInfo}>{children}</AuthContext.Provider>

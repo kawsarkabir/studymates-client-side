@@ -6,7 +6,7 @@ import { toast } from "react-toastify";
 
 const SignUp = () => {
   const navigate = useNavigate();
-  const { createUser, profileUpdate } = useContext(AuthContext);
+  const { createUser, profileUpdate, setUser } = useContext(AuthContext);
   const handleSignUp = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -35,6 +35,7 @@ const SignUp = () => {
         navigate("/");
         Swal.fire("Good job!", "Your Account Successfully Create!", "success");
         profileUpdate(name, photoURL)
+        setUser()
       })
       .catch(() => {
         toast.error("Invalid Your user Name and Password");

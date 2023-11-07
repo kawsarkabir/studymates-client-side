@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const Modal = ({ marks, title }) => {
   const { user } = useContext(AuthContext);
   const handleSubmitAssingment = (e) => {
-    e.preventDefault()
+    e.preventDefault();
     const form = e.target;
     const assingmentPDFLink = form.assingmentPDFLink.value;
     const quickNote = form.quickNote.value;
@@ -23,8 +23,11 @@ const Modal = ({ marks, title }) => {
       marks,
       title,
     };
+
     axios
-      .post("http://localhost:5000/submitedAssingments", submitedAssingment)
+      .post("http://localhost:5000/submitedAssingments", submitedAssingment, {
+        withCredentials: true,
+      })
       .then(() => {
         toast.success("submit your Assignment");
       });

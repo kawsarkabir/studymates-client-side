@@ -3,6 +3,7 @@ import DisplaySubmitedAssingment from "./DisplaySubmitedAssingment";
 
 const SubmitedAssingment = () => {
   const submitedAssingment = useLoaderData();
+  console.log(submitedAssingment);
 
   return (
     <div className="max-w-screen-xl mx-auto p-4">
