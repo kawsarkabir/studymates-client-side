@@ -7,7 +7,7 @@ import PropTypes from "prop-types";
 const Modal = ({ marks, title }) => {
   const { user } = useContext(AuthContext);
   const handleSubmitAssingment = (e) => {
-    e.preventDefault();
+    e.preventDefault()
     const form = e.target;
     const assingmentPDFLink = form.assingmentPDFLink.value;
     const quickNote = form.quickNote.value;
