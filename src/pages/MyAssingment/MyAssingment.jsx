@@ -1,13 +1,22 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import DisplayMyAssingment from "./DisplayMyAssingment";
+import axios from "axios";
 
 const MyAssingment = () => {
   const [assingment, setAssingment] = useState([]);
   const { user } = useContext(AuthContext);
   console.log(user?.email);
   useEffect(() => {
-    fetch(
+    axios
+      .get(
+        `https://online-group-study-management-server.vercel.app/submitedAssingment/complete?email=${user?.email}`,
+        { withCredentials: true }
+      )
+      .then((res) => {
+        setAssingment(res.data);
+      });
+    /*  fetch(
       `https://online-group-study-management-server.vercel.app/submitedAssingment/complete?email=${user?.email}`,
       { credentials: "include" }
     )
@@ -15,7 +24,7 @@ const MyAssingment = () => {
       .then((data) => {
         console.log(data);
         setAssingment(data);
-      });
+      }); */
   }, [user]);
 
   return (

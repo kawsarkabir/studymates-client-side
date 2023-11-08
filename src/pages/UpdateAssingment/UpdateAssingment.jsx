@@ -7,9 +7,12 @@ const UpdateAssingment = () => {
   const location = useLocation();
   const navigate = useNavigate();
   const loadedAssingment = useLoaderData();
+  console.log(loadedAssingment);
   const {
     title,
+
     assignmentImgURL,
+    
     description,
     marks,
     dueDate,
@@ -22,7 +25,7 @@ const UpdateAssingment = () => {
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
-    const assingmentImgURL = form.AssingmentImgURL.value;
+    const assignmentImgURL = form.AssingmentImgURL.value;
     const marks = form.Marks.value;
     const difficultyLevel = form.difficultyLevel.value;
     const dueDate = form.deoDate.value;
@@ -30,19 +33,22 @@ const UpdateAssingment = () => {
     const assingmentUpdateInfo = {
       title,
       description,
-      assingmentImgURL,
+      assignmentImgURL,
       marks,
       difficultyLevel,
       dueDate,
       assingmentOwner,
     };
-    fetch(`https://online-group-study-management-server.vercel.app/assingments/${_id}`, {
-      method: "PUT",
-      headers: {
-        "content-type": "application/json",
-      },
-      body: JSON.stringify(assingmentUpdateInfo),
-    })
+    fetch(
+      `https://online-group-study-management-server.vercel.app/assingments/${_id}`,
+      {
+        method: "PUT",
+        headers: {
+          "content-type": "application/json",
+        },
+        body: JSON.stringify(assingmentUpdateInfo),
+      }
+    )
       .then((res) => res.json())
       .then(() => {
         Swal.fire({
@@ -81,7 +87,8 @@ const UpdateAssingment = () => {
           <input
             name="AssingmentImgURL"
             type="text"
-            defaultValue={assignmentImgURL}
+            defaultValue={
+              assignmentImgURL}
             placeholder="Assingment imgURL"
             className="input input-bordered input-md w-full max-w-md"
           />
