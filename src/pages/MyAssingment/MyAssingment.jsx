@@ -1,6 +1,6 @@
-import DisplayMyAssingment from "./DisplayMyAssingment";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
+import DisplayMyAssingment from "./DisplayMyAssingment";
 
 const MyAssingment = () => {
   const [assingment, setAssingment] = useState([]);
@@ -8,7 +8,8 @@ const MyAssingment = () => {
   console.log(user?.email);
   useEffect(() => {
     fetch(
-      `http://localhost:5000/submitedAssingment/complete?email=${user?.email}`
+      `https://online-group-study-management-server.vercel.app/submitedAssingment/complete?email=${user?.email}`,
+      { credentials: "include" }
     )
       .then((res) => res.json())
       .then((data) => {

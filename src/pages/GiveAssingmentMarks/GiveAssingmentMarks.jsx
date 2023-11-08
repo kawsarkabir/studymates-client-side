@@ -1,5 +1,6 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
+import PDFViewer from "../../hooks/PDFViewer";
 
 const GiveAssingmentMarks = () => {
   const giveMarks = useLoaderData();
@@ -18,7 +19,7 @@ const GiveAssingmentMarks = () => {
     };
 
     axios
-      .patch(`http://localhost:5000/submitedAssingment/${_id}`, marksInfo)
+      .patch(`https://online-group-study-management-server.vercel.app/submitedAssingment/${_id}`, marksInfo)
       .then((res) => {
         console.log(res.data);
       });
@@ -28,7 +29,10 @@ const GiveAssingmentMarks = () => {
       <div className="w-1/2 text-center">
         <h1 className="font-bold text-2xl my-4">Gives Assingment Marks</h1>
         <div className="my-4">
-          <div>Here is view in ReactPDFViewer: {assingmentPDFLink}</div>
+          <div>
+           <PDFViewer assingmentPDFLink={assingmentPDFLink}></PDFViewer>
+          
+          </div>
           <p>quickNote by examinee: {quickNote}</p>
         </div>
         <form onSubmit={handleGiveMarks}>

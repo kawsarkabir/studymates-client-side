@@ -1,3 +1,4 @@
+import axios from "axios";
 import {
   GoogleAuthProvider,
   createUserWithEmailAndPassword,
@@ -10,7 +11,6 @@ import {
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
 import auth from "../configs/firebase.config";
-import axios from "axios";
 export const AuthContext = createContext(null);
 
 const AuthProvider = ({ children }) => {
@@ -25,14 +25,14 @@ const AuthProvider = ({ children }) => {
       //  ==================== Generate Token if user is exits  ============
       if (currentUser) {
         axios
-          .post("http://localhost:5000/jwt", logedUser, {
+          .post("https://online-group-study-management-server.vercel.app/jwt", logedUser, {
             withCredentials: true,
           })
           .then((res) => {
             console.log("token response", res.data);
           });
       } else {
-        axios.post("http://localhost:5000/logOutWithclearCookie", logedUser, {
+        axios.post("https://online-group-study-management-server.vercel.app/logOutWithclearCookie", logedUser, {
           withCredentials: true,
         });
       }

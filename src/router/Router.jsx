@@ -1,16 +1,16 @@
 import { createBrowserRouter } from "react-router-dom";
 import Layout from "../layout/Layout";
+import AllAssingment from "../pages/AllAssingment/AllAssingment";
+import CreateAssingment from "../pages/CreateAssignment/CreateAssingment";
+import GiveAssingmentMarks from "../pages/GiveAssingmentMarks/GiveAssingmentMarks";
+import MyAssingment from "../pages/MyAssingment/MyAssingment";
+import SignUp from "../pages/SignUp/SignUp";
+import SubmitedAssingment from "../pages/SubmitedAssingment/SubmitedAssingment";
+import UpdateAssingment from "../pages/UpdateAssingment/UpdateAssingment";
+import ViewAssingment from "../pages/ViewAssingment/ViewAssingment";
 import Home from "../pages/home/Home";
 import SignIn from "../pages/signIn/SignIn";
-import SignUp from "../pages/SignUp/SignUp";
-import AllAssingment from "../pages/AllAssingment/AllAssingment";
-import MyAssingment from "../pages/MyAssingment/MyAssingment";
-import CreateAssingment from "../pages/CreateAssignment/CreateAssingment";
-import SubmitedAssingment from "../pages/SubmitedAssingment/SubmitedAssingment";
 import PrivateRoute from "./PrivateRoute";
-import ViewAssingment from "../pages/ViewAssingment/ViewAssingment";
-import UpdateAssingment from "../pages/UpdateAssingment/UpdateAssingment";
-import GiveAssingmentMarks from "../pages/GiveAssingmentMarks/GiveAssingmentMarks";
 
 const Router = createBrowserRouter([
   {
@@ -24,7 +24,10 @@ const Router = createBrowserRouter([
       {
         path: "/allAssingment",
         element: <AllAssingment></AllAssingment>,
-        loader: () => fetch("http://localhost:5000/assingments"),
+        loader: () =>
+          fetch(
+            "https://online-group-study-management-server.vercel.app/assingments"
+          ),
       },
       {
         path: "/assingments/:id",
@@ -34,7 +37,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assingments/${params.id}`),
+          fetch(
+            `https://online-group-study-management-server.vercel.app/assingments/${params.id}`
+          ),
       },
       {
         path: "/updateAssingment/:id",
@@ -44,7 +49,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/assingments/${params.id}`),
+          fetch(
+            `https://online-group-study-management-server.vercel.app/assingments/${params.id}`
+          ),
       },
       {
         path: "/myAssingment",
@@ -54,7 +61,9 @@ const Router = createBrowserRouter([
           </PrivateRoute>
         ),
         loader: () =>
-          fetch("http://localhost:5000/submitedAssingment/complete"),
+          fetch(
+            "https://online-group-study-management-server.vercel.app/submitedAssingment/complete"
+          ),
       },
       {
         path: "/submitedAssingment",
@@ -63,13 +72,18 @@ const Router = createBrowserRouter([
             <SubmitedAssingment></SubmitedAssingment>
           </PrivateRoute>
         ),
-        loader: () => fetch("http://localhost:5000/pending/pending"),
+        loader: () =>
+          fetch(
+            "https://online-group-study-management-server.vercel.app/pending/pending"
+          ),
       },
       {
         path: "/submitedAssingment/:id",
         element: <GiveAssingmentMarks></GiveAssingmentMarks>,
         loader: ({ params }) =>
-          fetch(`http://localhost:5000/submitedAssingments/${params.id}`),
+          fetch(
+            `https://online-group-study-management-server.vercel.app/submitedAssingments/${params.id}`
+          ),
       },
       {
         path: "/createAssingment",

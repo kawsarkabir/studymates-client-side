@@ -1,7 +1,7 @@
 import { useContext } from "react";
+import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
-import { useLoaderData, useLocation, useNavigate } from "react-router-dom";
 
 const UpdateAssingment = () => {
   const location = useLocation();
@@ -36,7 +36,7 @@ const UpdateAssingment = () => {
       dueDate,
       assingmentOwner,
     };
-    fetch(`http://localhost:5000/assingments/${_id}`, {
+    fetch(`https://online-group-study-management-server.vercel.app/assingments/${_id}`, {
       method: "PUT",
       headers: {
         "content-type": "application/json",

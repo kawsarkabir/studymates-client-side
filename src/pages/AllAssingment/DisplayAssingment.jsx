@@ -1,9 +1,9 @@
 import PropTypes from "prop-types";
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import { toast } from "react-toastify";
 import Swal from "sweetalert2";
 import { AuthContext } from "../../provider/AuthProvider";
-import { useContext } from "react";
-import { toast } from "react-toastify";
 const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
   const {
     title,
@@ -29,7 +29,7 @@ const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed && assignmentOwner === user?.email) {
-        fetch(`http://localhost:5000/assingments/${id}`, {
+        fetch(`https://online-group-study-management-server.vercel.app/assingments/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

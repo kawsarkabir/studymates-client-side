@@ -1,7 +1,7 @@
+import axios from "axios";
 import { useContext } from "react";
 import { toast } from "react-toastify";
 import { AuthContext } from "../../provider/AuthProvider";
-import axios from "axios";
 
 const CreateAssignment = () => {
   const { user } = useContext(AuthContext);
@@ -54,7 +54,7 @@ const CreateAssignment = () => {
     };
 
     axios
-      .post("http://localhost:5000/assingments", assignmentCreateInfo)
+      .post("https://online-group-study-management-server.vercel.app/assingments", assignmentCreateInfo)
       .then(() => {
         toast.success("Successfully created your Assignment");
       });

@@ -1,8 +1,8 @@
-import { useContext } from "react";
-import { AuthContext } from "../../provider/AuthProvider";
 import axios from "axios";
-import { toast } from "react-toastify";
 import PropTypes from "prop-types";
+import { useContext } from "react";
+import { toast } from "react-toastify";
+import { AuthContext } from "../../provider/AuthProvider";
 
 const Modal = ({ marks, title }) => {
   const { user } = useContext(AuthContext);
@@ -25,7 +25,7 @@ const Modal = ({ marks, title }) => {
     };
 
     axios
-      .post("http://localhost:5000/submitedAssingments", submitedAssingment, {
+      .post("https://online-group-study-management-server.vercel.app/submitedAssingments", submitedAssingment, {
         withCredentials: true,
       })
       .then(() => {
