@@ -113,7 +113,7 @@ const AllAssingment = () => {
             onClick={() => setCurrentPage(page)}
             key={page}
           >
-            {page}
+            {page + 1}
           </button>
         ))}
         <button

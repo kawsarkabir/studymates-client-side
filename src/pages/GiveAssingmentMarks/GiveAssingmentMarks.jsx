@@ -22,7 +22,7 @@ const GiveAssingmentMarks = () => {
     axios
       .patch(`http://localhost:5000/submitedAssingment/${_id}`, marksInfo)
       .then(() => {
-        toast.success('successfully give marks done!')
+        toast.success("successfully give marks done!");
       });
   };
   return (
@@ -31,7 +31,11 @@ const GiveAssingmentMarks = () => {
         <h1 className="font-bold text-2xl my-4">Gives Assingment Marks</h1>
         <div className="my-4">
           <div>
-            <PDFViewer assingmentPDFLink={assingmentPDFLink}></PDFViewer>
+            <PDFViewer
+              assingmentPDFLink={
+                 assingmentPDFLink
+              }
+            ></PDFViewer>
           </div>
           <p>quickNote by examinee: {quickNote}</p>
         </div>
