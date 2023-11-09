@@ -10,9 +10,7 @@ const UpdateAssingment = () => {
   console.log(loadedAssingment);
   const {
     title,
-
     assignmentImgURL,
-    
     description,
     marks,
     dueDate,
@@ -39,16 +37,13 @@ const UpdateAssingment = () => {
       dueDate,
       assingmentOwner,
     };
-    fetch(
-      `http://localhost:5000/assingments/${_id}`,
-      {
-        method: "PUT",
-        headers: {
-          "content-type": "application/json",
-        },
-        body: JSON.stringify(assingmentUpdateInfo),
-      }
-    )
+    fetch(`http://localhost:5000/assingments/${_id}`, {
+      method: "PUT",
+      headers: {
+        "content-type": "application/json",
+      },
+      body: JSON.stringify(assingmentUpdateInfo),
+    })
       .then((res) => res.json())
       .then(() => {
         Swal.fire({
@@ -87,8 +82,7 @@ const UpdateAssingment = () => {
           <input
             name="assignmentImgURL"
             type="text"
-            defaultValue={
-              assignmentImgURL}
+            defaultValue={assignmentImgURL}
             placeholder="Assingment imgURL"
             className="input input-bordered input-md w-full max-w-md"
           />

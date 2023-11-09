@@ -10,9 +10,7 @@ const Navbar = () => {
       .then(() => {
         Swal.fire("Good job!", "Successfully logout!", "success");
       })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      .catch(() => {});
   };
   const navLinks = (
     <>
@@ -93,7 +91,7 @@ const Navbar = () => {
           </>
         ) : (
           <Link to={"/signin"}>
-            <button>Login</button>
+            <button className="btn btn-outline btn-sm lg:relative lg:bottom-2">Login</button>
           </Link>
         )}
       </li>

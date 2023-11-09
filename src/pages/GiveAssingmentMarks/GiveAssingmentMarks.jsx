@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useLoaderData } from "react-router-dom";
 import PDFViewer from "../../hooks/PDFViewer";
+import { toast } from "react-toastify";
 
 const GiveAssingmentMarks = () => {
   const giveMarks = useLoaderData();
@@ -20,8 +21,8 @@ const GiveAssingmentMarks = () => {
 
     axios
       .patch(`http://localhost:5000/submitedAssingment/${_id}`, marksInfo)
-      .then((res) => {
-        console.log(res.data);
+      .then(() => {
+        toast.success('successfully give marks done!')
       });
   };
   return (
@@ -30,8 +31,7 @@ const GiveAssingmentMarks = () => {
         <h1 className="font-bold text-2xl my-4">Gives Assingment Marks</h1>
         <div className="my-4">
           <div>
-           <PDFViewer assingmentPDFLink={assingmentPDFLink}></PDFViewer>
-          
+            <PDFViewer assingmentPDFLink={assingmentPDFLink}></PDFViewer>
           </div>
           <p>quickNote by examinee: {quickNote}</p>
         </div>

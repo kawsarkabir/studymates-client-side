@@ -1,38 +1,38 @@
 import DisplayAssingment from "./DisplayAssingment";
 import { useEffect, useState } from "react";
 import axios from "axios";
-import "./AllAssingment.css";
 
 const AllAssingment = () => {
   const [assingment, setAssingment] = useState([]);
   const [level, setLevel] = useState("default");
   //  pagination related code hre
   const [currentPage, setCurrentPage] = useState(0);
-  const [itemPerPage, setItemPerPage] = useState(10);
+  // const [itemPerPage, setItemPerPage] = useState(6);
+  const itemPerPage = 6;
   const [assingmentCount, setAssingmentCount] = useState(0);
   const numberOfPages = Math.ceil(assingmentCount / itemPerPage);
   const pages = [...Array(numberOfPages).keys()];
-  console.log("pages", pages);
 
   const handleChange = (e) => {
     setLevel(e.target.value);
   };
 
   useEffect(() => {
-    axios.get(`http://localhost:5000/assingments?page=${currentPage}&size=${itemPerPage}`).then((res) => {
-      const loadedAssingment = res.data;
-      console.log(loadedAssingment);
-      if (level === "default") {
-        setAssingment(loadedAssingment);
-      } else {
-        const filteredData = loadedAssingment.filter(
-          (item) => item.difficultyLevel === level
-        );
-        console.log(filteredData);
-        setAssingment(filteredData);
-        console.log(filteredData);
-      }
-    });
+    axios
+      .get(
+        `http://localhost:5000/assingments?page=${currentPage}&size=${itemPerPage}`
+      )
+      .then((res) => {
+        const loadedAssingment = res.data;
+        if (level === "default") {
+          setAssingment(loadedAssingment);
+        } else {
+          const filteredData = loadedAssingment.filter(
+            (item) => item.difficultyLevel === level
+          );
+          setAssingment(filteredData);
+        }
+      });
   }, [level, currentPage, itemPerPage]);
 
   // Fetch the assignment count on component mount
@@ -49,12 +49,11 @@ const AllAssingment = () => {
   }, []);
 
   // handle items per pages
-  const handleItemPerPage = (e) => {
-    const val = parseInt(e.target.value);
-    setItemPerPage(val);
-    console.log(val);
-    setCurrentPage(0);
-  };
+  // const handleItemPerPage = (e) => {
+  //   const val = parseInt(e.target.value);
+  //   setItemPerPage(val);
+  //   setCurrentPage(0);
+  // };
   const handlePrev = () => {
     if (currentPage > 0) {
       setCurrentPage(currentPage - 1);
@@ -96,29 +95,43 @@ const AllAssingment = () => {
         ))}
       </div>
       {/* paginations code */}
-      <div className="paginations mt-20 text-center">
-        <p>currentPage: {currentPage}</p>
-        <button onClick={handlePrev}>prev</button>
+      <div className="my-20 flex gap-x-3 items-center justify-center">
+        {/* <p>currentPage: {currentPage}</p> */}
+        <button
+          onClick={handlePrev}
+          className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+        >
+          <i className="fa-solid fa-angle-left"></i>
+        </button>
         {pages.map((page) => (
           <button
-            className={currentPage === page ? "selected" : undefined}
+            className={
+              currentPage === page
+                ? "bg-[#FF6F61] text-white mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+                : "mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+            }
             onClick={() => setCurrentPage(page)}
             key={page}
           >
             {page}
           </button>
         ))}
-        <button onClick={handleNext}>next</button>
+        <button
+          onClick={handleNext}
+          className="mx-1 flex h-9 w-9 items-center justify-center rounded-full border border-blue-gray-100 bg-transparent p-0 text-sm text-blue-gray-500 transition duration-150 ease-in-out hover:bg-light-300"
+        >
+          <i className="fa-solid fa-angle-right"></i>
+        </button>
 
-        <select
+        {/* <select
           value={itemPerPage}
           onChange={handleItemPerPage}
           className="select select-bordered ml-6 max-w-xs"
         >
-          <option value="5">5</option>
-          <option value="10">10</option>
-          <option value="15">15</option>
-        </select>
+          <option value="5">3</option>
+          <option value="10">6</option>
+          <option value="15">9</option>
+        </select> */}
       </div>
     </div>
   );

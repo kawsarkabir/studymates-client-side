@@ -8,7 +8,7 @@ const ViewAssingment = () => {
     assignmentImgURL,
     description,
     marks,
-    deoDate,
+    dueDate,
     difficultyLevel,
   } = viewAssingment || {};
   // modal handle
@@ -28,7 +28,7 @@ const ViewAssingment = () => {
 
           <p className="text-xl">
             <span className="font-bold"> Marks:</span> {marks}{" "}
-            <span className="font-bold">Deo Date:</span> {deoDate}{" "}
+            <span className="font-bold">Deo Date:</span> {dueDate}{" "}
           </p>
           <p className="text-xl">{description}</p>
         </div>

@@ -6,7 +6,6 @@ import DisplayMyAssingment from "./DisplayMyAssingment";
 const MyAssingment = () => {
   const [assingment, setAssingment] = useState([]);
   const { user } = useContext(AuthContext);
-  console.log(user?.email);
   useEffect(() => {
     axios
       .get(
@@ -16,15 +15,6 @@ const MyAssingment = () => {
       .then((res) => {
         setAssingment(res.data);
       });
-    /*  fetch(
-      `http://localhost:5000/submitedAssingment/complete?email=${user?.email}`,
-      { credentials: "include" }
-    )
-      .then((res) => res.json())
-      .then((data) => {
-        console.log(data);
-        setAssingment(data);
-      }); */
   }, [user]);
 
   return (
