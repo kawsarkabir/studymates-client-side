@@ -54,7 +54,7 @@ const CreateAssignment = () => {
     };
 
     axios
-      .post("https://online-group-study-management-server.vercel.app/assingments", assignmentCreateInfo)
+      .post("http://localhost:5000/assingments", assignmentCreateInfo)
       .then(() => {
         toast.success("Successfully created your Assignment");
       });

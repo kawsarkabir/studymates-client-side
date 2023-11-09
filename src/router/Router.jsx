@@ -26,7 +26,7 @@ const Router = createBrowserRouter([
         element: <AllAssingment></AllAssingment>,
         loader: () =>
           fetch(
-            "https://online-group-study-management-server.vercel.app/assingments"
+            "http://localhost:5000/assingments"
           ),
       },
       {
@@ -38,7 +38,7 @@ const Router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://online-group-study-management-server.vercel.app/assingments/${params.id}`
+            `http://localhost:5000/assingments/${params.id}`
           ),
       },
       {
@@ -50,7 +50,7 @@ const Router = createBrowserRouter([
         ),
         loader: ({ params }) =>
           fetch(
-            `https://online-group-study-management-server.vercel.app/assingments/${params.id}`
+            `http://localhost:5000/assingments/${params.id}`
           ),
       },
       {
@@ -62,7 +62,7 @@ const Router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://online-group-study-management-server.vercel.app/submitedAssingment/complete"
+            "http://localhost:5000/submitedAssingment/complete"
           ),
       },
       {
@@ -74,7 +74,7 @@ const Router = createBrowserRouter([
         ),
         loader: () =>
           fetch(
-            "https://online-group-study-management-server.vercel.app/pending/pending"
+            "http://localhost:5000/pending/pending"
           ),
       },
       {
@@ -82,7 +82,7 @@ const Router = createBrowserRouter([
         element: <GiveAssingmentMarks></GiveAssingmentMarks>,
         loader: ({ params }) =>
           fetch(
-            `https://online-group-study-management-server.vercel.app/submitedAssingments/${params.id}`
+            `http://localhost:5000/submitedAssingments/${params.id}`
           ),
       },
       {

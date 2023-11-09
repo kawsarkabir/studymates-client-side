@@ -19,7 +19,7 @@ const GiveAssingmentMarks = () => {
     };
 
     axios
-      .patch(`https://online-group-study-management-server.vercel.app/submitedAssingment/${_id}`, marksInfo)
+      .patch(`http://localhost:5000/submitedAssingment/${_id}`, marksInfo)
       .then((res) => {
         console.log(res.data);
       });

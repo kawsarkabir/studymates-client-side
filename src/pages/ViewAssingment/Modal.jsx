@@ -25,7 +25,7 @@ const Modal = ({ marks, title }) => {
     };
 
     axios
-      .post("https://online-group-study-management-server.vercel.app/submitedAssingments", submitedAssingment, {
+      .post("http://localhost:5000/submitedAssingments", submitedAssingment, {
         withCredentials: true,
       })
       .then(() => {

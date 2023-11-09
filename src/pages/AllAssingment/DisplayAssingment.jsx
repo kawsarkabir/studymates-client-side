@@ -29,7 +29,7 @@ const DisplayAssingment = ({ SingleAssingment, assingment, setAssingment }) => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed && assignmentOwner === user?.email) {
-        fetch(`https://online-group-study-management-server.vercel.app/assingments/${id}`, {
+        fetch(`http://localhost:5000/assingments/${id}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

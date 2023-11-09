@@ -25,10 +25,10 @@ const UpdateAssingment = () => {
     const form = e.target;
     const title = form.title.value;
     const description = form.description.value;
-    const assignmentImgURL = form.AssingmentImgURL.value;
+    const assignmentImgURL = form.assignmentImgURL.value;
     const marks = form.Marks.value;
     const difficultyLevel = form.difficultyLevel.value;
-    const dueDate = form.deoDate.value;
+    const dueDate = form.dueDate.value;
     const assingmentOwner = user?.email;
     const assingmentUpdateInfo = {
       title,
@@ -40,7 +40,7 @@ const UpdateAssingment = () => {
       assingmentOwner,
     };
     fetch(
-      `https://online-group-study-management-server.vercel.app/assingments/${_id}`,
+      `http://localhost:5000/assingments/${_id}`,
       {
         method: "PUT",
         headers: {
@@ -85,7 +85,7 @@ const UpdateAssingment = () => {
             className="input input-bordered input-md w-full max-w-md"
           />
           <input
-            name="AssingmentImgURL"
+            name="assignmentImgURL"
             type="text"
             defaultValue={
               assignmentImgURL}
@@ -112,7 +112,7 @@ const UpdateAssingment = () => {
             <option>Hard</option>
           </select>
           <input
-            name="deoDate"
+            name="dueDate"
             type="date"
             defaultValue={dueDate}
             placeholder="Deo Date"

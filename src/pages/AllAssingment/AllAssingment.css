@@ -1,0 +1,6 @@
+.paginations button {
+  padding: 8px 10px;
+}
+.paginations .selected{
+    background-color: rebeccapurple;
+}

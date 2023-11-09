@@ -1,7 +1,7 @@
+import axios from "axios";
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../provider/AuthProvider";
 import DisplayMyAssingment from "./DisplayMyAssingment";
-import axios from "axios";
 
 const MyAssingment = () => {
   const [assingment, setAssingment] = useState([]);
@@ -10,14 +10,14 @@ const MyAssingment = () => {
   useEffect(() => {
     axios
       .get(
-        `https://online-group-study-management-server.vercel.app/submitedAssingment/complete?email=${user?.email}`,
+        `http://localhost:5000/submitedAssingment/complete?email=${user?.email}`,
         { withCredentials: true }
       )
       .then((res) => {
         setAssingment(res.data);
       });
     /*  fetch(
-      `https://online-group-study-management-server.vercel.app/submitedAssingment/complete?email=${user?.email}`,
+      `http://localhost:5000/submitedAssingment/complete?email=${user?.email}`,
       { credentials: "include" }
     )
       .then((res) => res.json())

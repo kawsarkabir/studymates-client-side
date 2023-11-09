@@ -1,12 +1,12 @@
 import axios from "axios";
 import {
-  GoogleAuthProvider,
-  createUserWithEmailAndPassword,
-  onAuthStateChanged,
-  signInWithEmailAndPassword,
-  signInWithPopup,
-  signOut,
-  updateProfile,
+    GoogleAuthProvider,
+    createUserWithEmailAndPassword,
+    onAuthStateChanged,
+    signInWithEmailAndPassword,
+    signInWithPopup,
+    signOut,
+    updateProfile,
 } from "firebase/auth";
 import PropTypes from "prop-types";
 import { createContext, useEffect, useState } from "react";
@@ -25,14 +25,14 @@ const AuthProvider = ({ children }) => {
       //  ==================== Generate Token if user is exits  ============
       if (currentUser) {
         axios
-          .post("https://online-group-study-management-server.vercel.app/jwt", logedUser, {
+          .post("http://localhost:5000/jwt", logedUser, {
             withCredentials: true,
           })
           .then((res) => {
             console.log("token response", res.data);
           });
       } else {
-        axios.post("https://online-group-study-management-server.vercel.app/logOutWithclearCookie", logedUser, {
+        axios.post("http://localhost:5000/logOutWithclearCookie", logedUser, {
           withCredentials: true,
         });
       }
